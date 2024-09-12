@@ -15,7 +15,8 @@ SECRET_KEY = 'sjkñaksj6@=w6=&klqpse3uae1(_%0ul^zhwh(ih-gu@o1#(wba&74vheldfasfas
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS =  os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['webturnos.onrender.com', 'www.webturnos.com']
+
 
 # Application definition
 
