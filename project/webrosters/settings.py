@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'project.webrosters.urls'
+ROOT_URLCONF = 'webrosters.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project.webrosters.wsgi.application'
+WSGI_APPLICATION = 'webrosters.wsgi.application'
 
 
 # Database
