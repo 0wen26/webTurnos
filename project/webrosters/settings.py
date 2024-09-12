@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # apps propias
-    'project.turnos.apps.TurnosConfig'
+    'turnos.apps.TurnosConfig'
 ]
 
 MIDDLEWARE = [
