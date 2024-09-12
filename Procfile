@@ -1,1 +1,1 @@
-web: gunicorn webrosters.wsgi
+web: gunicorn webrosters.wsgi:application
