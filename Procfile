@@ -1,1 +1,1 @@
-web: gunicorn project.webrosters.wsgi:application
+web: gunicorn project.webrosters.wsgi:application --bind 0.0.0.0:$PORT
