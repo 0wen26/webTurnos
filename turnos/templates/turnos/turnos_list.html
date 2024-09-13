@@ -4,144 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Turnos</title>
+    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- DataTables Responsive CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
     <style>
-       /* Modo oscuro general */
-body {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
-
-/* Estilos para la tabla en modo oscuro */
-table.dataTable {
-    border-collapse: collapse;
-    border: none;
-}
-
-/* Color de los encabezados */
-table.dataTable thead {
-    background-color: #333;
-}
-
-table.dataTable thead th {
-    color: #ffffff;
-    padding: 10px;
-    text-align: left;
-}
-
-/* Color de las filas de datos */
-table.dataTable tbody tr {
-    background-color: #252525;
-    color: #e0e0e0; /* Color del texto de los datos */
-}
-
-/* Filas alternas */
-table.dataTable tbody tr:nth-child(even) {
-    background-color: #2e2e2e;
-}
-
-/* Cambiar color del fondo y texto al hacer hover */
-table.dataTable tbody tr:hover {
-    background-color: #444;
-    color: #ffffff; /* Color del texto al hacer hover */
-}
-
-/* Mejoras en la responsividad */
-@media (max-width: 768px) {
-    table.dataTable thead {
-        display: none;
-    }
-
-    table.dataTable tbody td {
-        display: block;
-        width: 100%;
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    table.dataTable tbody td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        width: 45%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: bold;
-        color: #ffffff; /* Color de las etiquetas en móviles */
-    }
-}
-
-
-        /* Scrollbar estilo */
-        ::-webkit-scrollbar {
-            width: 8px;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #333;
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #555;
-            border-radius: 10px;
-            border: 2px solid transparent;
+        table.dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e0e0e0;
+        }
+
+        table.dataTable thead th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        table.dataTable tbody td {
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table.dataTable tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Botones */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            margin: 2px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #45a049;
+            color: white;
+        }
+
+        /* Responsivo */
+        @media only screen and (max-width: 768px) {
+            table.dataTable thead {
+                display: none;
+            }
+
+            table.dataTable tbody td {
+                display: block;
+                text-align: right;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                position: relative;
+            }
+
+            table.dataTable tbody td:before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #4CAF50;
+            }
+
+            table.dataTable tbody tr {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Lista de Turnos</h1>
-    <table id="turnos_table" class="display responsive nowrap" style="width:100%">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Turno</th>
-                <th>Persona</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for turno in turnos %}
-            <tr>
-                <td data-label="Fecha">{{ turno.fecha }}</td>
-                <td data-label="Turno">{{ turno.nombre_turno }}</td>
-                <td data-label="Persona">{{ turno.nombres }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="3">No se encontraron datos</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
+    <h1>Lista de Turnos</h1>
+
+    <div class="table-responsive">
+        <table id="turnos_table" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Turno</th>
+                    <th>Persona</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turno in turnos %}
+                <tr>
+                    <td data-label="Fecha">{{ turno.fecha }}</td>
+                    <td data-label="Turno">{{ turno.nombre_turno }}</td>
+                    <td data-label="Persona">{{ turno.nombres }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No se encontraron datos</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Responsive JS -->
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <!-- Custom Script -->
     <script>
         $(document).ready(function() {
             $('#turnos_table').DataTable({
                 responsive: true,
-                "language": {
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                language: {
+                    "search": "Buscar:",
                     "lengthMenu": "Mostrar _MENU_ turnos por página",
-                    "zeroRecords": "No se encontraron turnos",
+                    "zeroRecords": "No se encontraron coincidencias",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay turnos disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ turnos totales)",
-                    "search": "Buscar:",
+                    "infoFiltered": "(filtrado de _MAX_ total de turnos)",
                     "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    },
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    }
                 }
             });
         });
     </script>
+
 </body>
 </html>
