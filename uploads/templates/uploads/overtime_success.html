@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block title %}Resumen de Horas{% endblock %}
+
+{% block content %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- DataTables Responsive CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    
+    <style>
+        body {
+            background-color: #2b2f3a !important; /* Color de fondo similar al admin de Django */
+            color: #eaeaea !important;
+            font-family: Arial, sans-serif;
+        }
+    
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f0f0f0 !important;
+        }
+    
+        /* Estilos para la tabla */
+        table.dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #3a3f4b !important; /* Fondo oscuro para la tabla */
+        }
+    
+        table.dataTable thead th {
+            background-color: #1c1f26 !important; /* Color oscuro del encabezado */
+            color: #f0f0f0 !important; /* Texto claro */
+            padding: 12px;
+        }
+    
+        table.dataTable tbody td {
+            padding: 12px;
+            text-align: center;
+            color: #eaeaea !important; /* Texto claro en las filas */
+            background-color: #3a3f4b !important; /* Fondo oscuro en las filas */
+        }
+    
+        table.dataTable tbody td.fecha {
+            color: #add8e6 !important; /* Texto claro para la columna de fechas, similar al azul del admin */
+        }
+    
+        table.dataTable tbody tr:hover {
+            background-color: #505560 !important; /* Hover más claro */
+        }
+    
+        /* Botones y paginación de DataTables */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background-color: #1c1f26 !important;
+            color: #eaeaea !important;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+        }
+    
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #505560 !important;
+            color: #ffffff !important;
+        }
+    
+        .dataTables_wrapper .dataTables_length select, 
+        .dataTables_wrapper .dataTables_filter input {
+            background-color: #3a3f4b !important;
+            color: #eaeaea !important;
+            border: 1px solid #505560 !important;
+        }
+    
+        /* Cambiar el color del texto de búsqueda */
+        .dataTables_wrapper .dataTables_filter label {
+            color: #eaeaea !important; /* Cambiar el color del texto "Buscar" a blanco */
+        }
+    
+        .dataTables_wrapper .dataTables_filter input {
+            color: #eaeaea !important; /* Cambiar el color del texto dentro del input de búsqueda */
+        }
+    
+        /* Cambiar el color del texto "Mostrar" */
+        .dataTables_wrapper .dataTables_length label {
+            color: #eaeaea !important; /* Cambiar el color del texto "Mostrar" a blanco */
+        }
+    
+        /* Estilos para botones de acción como en el admin de Django */
+        .btn-primary {
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+        }
+    
+        .btn-primary:hover {
+            background-color: #0b5ed7 !important;
+            border-color: #0a58ca !important;
+        }
+    
+        /* Responsivo */
+        @media (max-width: 768px) {
+            table.dataTable thead {
+                display: none;
+            }
+    
+            table.dataTable tbody td {
+                display: block;
+                text-align: right;
+                padding: 10px;
+                border-bottom: 1px solid #ddd !important;
+                position: relative;
+            }
+    
+            table.dataTable tbody td:before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #add8e6 !important;
+            }
+    
+            table.dataTable tbody tr {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    
+    <div class="container">
+        <h2>Resumen de Horas</h2>
+        <div class="table-responsive">
+            <table id="overtimeTable" class="display responsive nowrap table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Mes</th>
+                        <th>Contrato</th>
+                        <th>Total Perentorias</th>
+                        <th>Horas Complementarias</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in overtime_data %}
+                    <tr data-id="{{ data.id }}">
+                        <td data-label="Mes">{{ data.mes }}</td>
+                        <td data-label="Contrato">{{ data.contrato_numero }}</td>
+                        <td data-label="Total Perentorias">{{ data.total_horas_extras_decimal }}</td>
+                        <td data-label="Horas Complementarias">{{ data.horas_complementarias_decimal }}</td>
+                        <td data-label="Acciones">
+                            <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No se encontraron datos</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Responsive JS -->
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            var table = $('#overtimeTable').DataTable({
+                responsive: true,
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                language: {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron coincidencias",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    }
+                }
+            });
+
+            // Manejador de evento para el botón de eliminar
+            $('#overtimeTable').on('click', '.delete-btn', function() {
+                var row = $(this).closest('tr');
+                var id = row.data('id');
+
+                console.log('Intentando eliminar el registro con ID:', id);
+
+                if (confirm('¿Estás seguro de que quieres eliminar este registro?')) {
+                    $.ajax({
+                        url: "/uploads/delete_overtime/" + id + "/",  // Construir la URL correcta
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'  // Incluir el token CSRF
+                        },
+                        success: function(result) {
+                            // Elimina la fila de la tabla
+                            table.row(row).remove().draw();
+                            console.log('Registro eliminado exitosamente:', id);
+                        },
+                        error: function(xhr) {
+                            alert('Error al eliminar el registro: ' + xhr.responseJSON.error);
+                            console.error('Error al eliminar el registro:', xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

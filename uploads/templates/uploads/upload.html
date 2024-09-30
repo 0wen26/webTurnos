@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Subir Horario{% endblock %}
+
+{% block content %}
+    <style>
+        /* Estilo para el contenedor del formulario */
+        .upload-container {
+            display: flex;
+            justify-content: center; /* Centra horizontalmente el formulario */
+            align-items: center;
+            height: 70vh; /* Centra verticalmente */
+        }
+
+        /* Estilo del formulario */
+        .upload-form {
+            width: 390px; /* Tamaño moderado del formulario */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        .upload-form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333; /* Color de texto */
+        }
+
+        .upload-form .form-control-file {
+            display: block;
+            margin-bottom: 15px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .upload-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--bs-primary); /* Color primario heredado */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .upload-form button:hover {
+            background-color: var(--bs-dark); /* Efecto hover */
+        }
+    </style>
+
+    <div class="upload-container">
+        <div class="upload-form">
+            <h1>Subir Horas extras</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="pdf">Seleccionar archivo PDF:</label>
+                    <input type="file" class="form-control-file" id="pdf" name="pdf_file" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Subir PDF</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

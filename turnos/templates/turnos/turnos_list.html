@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Lista de Turnos - Dark Mode Django Style
+{% endblock %}
+
+{% block extra_head %}
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <style>
+        /* Custom CSS similar to original */
+        body {
+            background-color: #2b2f3a !important;
+            color: #eaeaea !important;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f0f0f0 !important;
+        }
+        table.dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #3a3f4b !important;
+        }
+        table.dataTable thead th {
+            background-color: #1c1f26 !important;
+            color: #f0f0f0 !important;
+            padding: 12px;
+        }
+        table.dataTable tbody td {
+            padding: 12px;
+            text-align: center;
+            color: #eaeaea !important;
+            background-color: #3a3f4b !important;
+        }
+        table.dataTable tbody td.fecha {
+            color: #add8e6 !important;
+        }
+        table.dataTable tbody tr:hover {
+            background-color: #505560 !important;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background-color: #1c1f26 !important;
+            color: #eaeaea !important;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #505560 !important;
+            color: #ffffff !important;
+        }
+        .dataTables_wrapper .dataTables_length select, 
+        .dataTables_wrapper .dataTables_filter input {
+            background-color: #3a3f4b !important;
+            color: #eaeaea !important;
+            border: 1px solid #505560 !important;
+        }
+        .dataTables_wrapper .dataTables_filter label,
+        .dataTables_wrapper .dataTables_length label {
+            color: #eaeaea !important;
+        }
+        .dataTables_wrapper .dataTables_filter input {
+            color: #eaeaea !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Lista de Turnos</h1>
+    <div class="table-responsive">
+        <table id="turnos_table" class="display responsive nowrap table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Turno</th>
+                    <th>Persona</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turno in turnos %}
+                <tr>
+                    <td class="fecha" data-label="Fecha">{{ turno.fecha }}</td>
+                    <td data-label="Turno">{{ turno.nombre_turno }}</td>
+                    <td data-label="Persona">{{ turno.nombres }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No se encontraron datos</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#turnos_table').DataTable({
+                responsive: true,
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                language: {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ turnos por página",
+                    "zeroRecords": "No se encontraron coincidencias",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay turnos disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ total de turnos)",
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

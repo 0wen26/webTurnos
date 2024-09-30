@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Centra verticalmente */
+        }
+
+        .login-form {
+            width: 300px; /* Reduce el ancho del formulario */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .login-form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-form .form-control {
+            font-size: 14px; /* Hacer los cuadros de texto un poco más pequeños */
+        }
+
+        .login-form button {
+            width: 100%; /* Botón de inicio de sesión al 100% */
+        }
+    </style>
+
+    <div class="login-container">
+        <div class="login-form">
+            <h1>Iniciar sesión</h1>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
