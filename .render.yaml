@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: webTurnos
-    buildCommand: |
-      pip install -r requirements.txt
-    startCommand: |
-      gunicorn project.webrosters.wsgi:application --bind 0.0.0.0:$PORT
-    env:
-      PYTHONPATH: /opt/render/project/src/project

@@ -13,7 +13,12 @@ SECRET_KEY = 'sjkñaksj6@=w6=&klqpse3uae1(_%0ul^zhwh(ih-gu@o1#(wba&74vheldfasfas
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS =  ['webturnos.onrender.com', 'www.webturnos.com']
+=======
+ALLOWED_HOSTS = ['webturnos.onrender.com', 'www.webturnos.com']
+
+>>>>>>> 0dcc02eede6832752b4e272e7bff5099fbdda611
 
 # Application definition
 

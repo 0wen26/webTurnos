@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 
 {% block title %}
@@ -72,6 +73,111 @@
     <h1>Lista de Turnos</h1>
     <div class="table-responsive">
         <table id="turnos_table" class="display responsive nowrap table table-striped table-bordered" style="width:100%">
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Turnos</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- DataTables Responsive CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+
+        table.dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e0e0e0;
+        }
+
+        table.dataTable thead th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        table.dataTable tbody td {
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table.dataTable tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Botones */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            margin: 2px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #45a049;
+            color: white;
+        }
+
+        /* Responsivo */
+        @media only screen and (max-width: 768px) {
+            table.dataTable thead {
+                display: none;
+            }
+
+            table.dataTable tbody td {
+                display: block;
+                text-align: right;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                position: relative;
+            }
+
+            table.dataTable tbody td:before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #4CAF50;
+            }
+
+            table.dataTable tbody tr {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de Turnos</h1>
+
+    <div class="table-responsive">
+        <table id="turnos_table" class="display responsive nowrap" style="width:100%">
+>>>>>>> 0dcc02eede6832752b4e272e7bff5099fbdda611
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -82,7 +188,11 @@
             <tbody>
                 {% for turno in turnos %}
                 <tr>
+<<<<<<< HEAD
                     <td class="fecha" data-label="Fecha">{{ turno.fecha }}</td>
+=======
+                    <td data-label="Fecha">{{ turno.fecha }}</td>
+>>>>>>> 0dcc02eede6832752b4e272e7bff5099fbdda611
                     <td data-label="Turno">{{ turno.nombre_turno }}</td>
                     <td data-label="Persona">{{ turno.nombres }}</td>
                 </tr>
@@ -94,14 +204,24 @@
             </tbody>
         </table>
     </div>
+<<<<<<< HEAD
 {% endblock %}
 
 {% block extra_js %}
+=======
+
+>>>>>>> 0dcc02eede6832752b4e272e7bff5099fbdda611
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<<<<<<< HEAD
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+=======
+    <!-- DataTables Responsive JS -->
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <!-- Custom Script -->
+>>>>>>> 0dcc02eede6832752b4e272e7bff5099fbdda611
     <script>
         $(document).ready(function() {
             $('#turnos_table').DataTable({
@@ -125,4 +245,10 @@
             });
         });
     </script>
+<<<<<<< HEAD
 {% endblock %}
+=======
+
+</body>
+</html>
+>>>>>>> 0dcc02eede6832752b4e272e7bff5099fbdda611
