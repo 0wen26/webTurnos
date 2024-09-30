@@ -3,44 +3,41 @@
 {% block title %}Registrar cuenta{% endblock %}
 
 {% block content %}
-    <style>
-        .register-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
-        }
-
-        .register-form {
-            width: 300px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        .register-form h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .register-form .form-control {
-            font-size: 14px;
-        }
-
-        .register-form button {
-            width: 100%;
-        }
-    </style>
+{% load form_filters %}
 
     <div class="register-container">
         <div class="register-form">
             <h1>Registrar</h1>
             <form method="post" action="{% url 'register' %}">
                 {% csrf_token %}
-                {{ form.as_p }}  <!-- Esto renderiza los campos automáticamente desde el formulario en views.py -->
+                {{ form.non_field_errors }}
+
+                <div class="mb-3">
+                    {{ form.username.label_tag }}
+                    {{ form.username|add_class:"form-control" }}
+                    {{ form.username.errors }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.email.label_tag }}
+                    {{ form.email|add_class:"form-control" }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1|add_class:"form-control" }}
+                    {{ form.password1.errors }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2|add_class:"form-control" }}
+                    {{ form.password2.errors }}
+                </div>
+
                 <button type="submit" class="btn btn-primary">Registrar</button>
             </form>
         </div>
     </div>
 {% endblock %}
-
