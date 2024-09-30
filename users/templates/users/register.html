@@ -8,11 +8,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 80vh; /* Centra verticalmente */
+            height: 80vh;
         }
 
         .register-form {
-            width: 300px; /* Reduce el ancho del formulario */
+            width: 300px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -24,11 +24,11 @@
         }
 
         .register-form .form-control {
-            font-size: 14px; /* Hacer los cuadros de texto un poco más pequeños */
+            font-size: 14px;
         }
 
         .register-form button {
-            width: 100%; /* Botón de registro al 100% */
+            width: 100%;
         }
     </style>
 
@@ -37,20 +37,10 @@
             <h1>Registrar</h1>
             <form method="post" action="{% url 'register' %}">
                 {% csrf_token %}
-                <div class="mb-3">
-                    <label for="username" class="form-label">Usuario:</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
+                {{ form.as_p }}  <!-- Esto renderiza los campos automáticamente desde el formulario en views.py -->
                 <button type="submit" class="btn btn-primary">Registrar</button>
             </form>
         </div>
     </div>
 {% endblock %}
+
