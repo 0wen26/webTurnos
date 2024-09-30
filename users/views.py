@@ -11,8 +11,24 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, f"¡Cuenta creada exitosamente!")
-            return redirect('/')  # Cambia 'home' por la vista a la que quieres redirigir después
+            messages.success(request, "¡Cuenta creada exitosamente!")
+            return redirect('/')
+        else:
+            messages.error(request, "Error en el registro. Verifica los campos.")
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            messages.success(request, "¡Inicio de sesión exitoso!")
+            return redirect('/')
+        else:
+            messages.error(request, "Error en el inicio de sesión. Verifica tus credenciales.")
+    else:
+        form = AuthenticationForm()
+    return render(request, 'users/login.html', {'form': form})
+
