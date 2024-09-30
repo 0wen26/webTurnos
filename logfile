@@ -3,3 +3,6 @@
 2024-09-30 21:19:48.651 CEST [3984] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
 2024-09-30 21:19:48.699 CEST [18712] LOG:  el sistema de bases de datos fue apagado en 2024-09-30 21:16:06 CEST
 2024-09-30 21:19:48.713 CEST [3984] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-30 21:21:20.258 CEST [12520] FATAL:  no existe el rol «postgres»
+2024-09-30 21:24:48.699 CEST [34108] LOG:  empezando checkpoint: time
+2024-09-30 21:24:53.625 CEST [34108] LOG:  checkpoint completo: escritos 48 búfers (0.3%); 0 archivos WAL añadidos, 0 eliminados, 0 reciclados; write=4.895 s, sync=0.015 s, total=4.929 s; archivos sincronizados=11, más largo=0.008 s, promedio=0.002 s; distancia=288 kB, estimación=288 kB; lsn=0/15B53C0, lsn de redo=0/15B5368
