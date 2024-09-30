@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Ejecutar migraciones
-python manage.py migrate
+python manage.py migrate --fake-initial
 
 # Iniciar Gunicorn (o el servidor que estés utilizando)
-#gunicorn project.wsgi:application --bind 0.0.0.0:8000
+gunicorn webrosters.wsgi:application --bind 0.0.0.0:8000

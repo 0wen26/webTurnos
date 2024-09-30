@@ -1,0 +1,5 @@
+2024-09-30 21:19:48.647 CEST [3984] LOG:  iniciando PostgreSQL 17.0 on x86_64-windows, compiled by msvc-19.41.34120, 64-bit
+2024-09-30 21:19:48.651 CEST [3984] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-30 21:19:48.651 CEST [3984] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-30 21:19:48.699 CEST [18712] LOG:  el sistema de bases de datos fue apagado en 2024-09-30 21:16:06 CEST
+2024-09-30 21:19:48.713 CEST [3984] LOG:  el sistema de bases de datos está listo para aceptar conexiones
