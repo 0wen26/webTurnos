@@ -11,7 +11,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'sjkñaksj6@=w6=&klqpse3uae1(_%0ul^zhwh(ih-gu@o1#(wba&74vheldfasfaswq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #False
+DEBUG = False #False
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 ALLOWED_HOSTS =  ['webturnos.onrender.com', 'www.webturnos.com']
  #ALLOWED_HOSTS =  []
